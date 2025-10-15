@@ -1,32 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Robodebt Simulator</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Robodebt: The Flawed Algorithm</h1>
-        <p>This is a simplified simulation to demonstrate how Robodebt's "income averaging" created false debts. Adjust the values below to see how it worked.</p>
-        
-        <div class= "preselection" >
-                <!-- Option 1 -->
-                <button onclick="selectChoice('welfare')" class="condition">
-                    Welfare Recipient
-                </button>
-                <!-- Option 2 -->
-                <button onclick="selectChoice('creditor')" class="condition">
-                    Creditor to the State
-                </button>
-                <!-- Option 3 -->
-                <button onclick="selectChoice('partner')" class="condition">
-                    Partner of the above
-                </button>
-         </div>
+function selectChoice(choice) {
+    // This is a placeholder for the buttons. 
+    // In a full app, this could pre-fill the form with example scenarios.
+    console.log("Selected scenario:", choice);
+}
 
-        function calculateDebt() {
+function calculateDebt() {
     // --- STEP 1: GET INPUTS ---
     // Fetch the raw values from the HTML input fields.
     const atoIncomeInput = document.getElementById('atoIncome').value;
@@ -97,6 +75,3 @@
         </div>
     `;
 }
-    <script src="script.js"></script>
-</body>
-</html>
