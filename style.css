@@ -22,6 +22,17 @@ body {
     text-align: center;
 }
 
+preselection {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    padding-bottom: inherit;
+}
+    
 h1 {
     color: #d92626; /* A distinct red */
     font-size: 2rem;
