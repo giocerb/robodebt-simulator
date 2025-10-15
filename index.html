@@ -5,40 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Robodebt Simulator</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <h1>Robodebt: The Flawed Algorithm</h1>
-        <p>This is a simplified simulation to demonstrate how Robodebt's "income averaging" created false debts. Adjust the values below to see how it worked.</p>
+        <p>This is a simplified simulation to demonstrate how Robodebt's "income averaging" created false debts. Enter the total income recorded by the tax office (ATO) and the income you actually declared to Centrelink over a period to see how the algorithm worked.</p>
         
-        <!-- Input Form for the Calculator -->
-        <div class="calculator-form">
+        <div class="preselection">
+            <button onclick="selectChoice('welfare')" class="condition">
+                Welfare Recipient
+            </button>
+            <button onclick="selectChoice('creditor')" class="condition">
+                Creditor to the State
+            </button>
+            <button onclick="selectChoice('partner')" class="condition">
+                Partner of the above
+            </button>
+        </div>
+
+        <div class="input-grid">
             <div class="input-group">
-                <label for="atoIncome">Total Annual Income (ATO data)</label>
-                <input type="number" id="atoIncome" value="26000">
+                <label for="atoIncome">Total Annual ATO Income ($)</label>
+                <input type="number" id="atoIncome" placeholder="e.g., 25000">
             </div>
             <div class="input-group">
-                <label for="declaredIncome">Total Income Declared to Centrelink</label>
-                <input type="number" id="declaredIncome" value="13000">
+                <label for="declaredIncome">Total Income Declared to Centrelink ($)</label>
+                <input type="number" id="declaredIncome" placeholder="e.g., 4000">
             </div>
-             <div class="input-group">
+            <div class="input-group">
                 <label for="fortnights">Number of Fortnights in Period</label>
-                <input type="number" id="fortnights" value="26">
+                <input type="number" id="fortnights" value="26" placeholder="A financial year has 26 fortnights">
             </div>
         </div>
 
-        <button onclick="calculateDebt()" class="calculate-btn">
-            Calculate Potential Debt
-        </button>
+        <button onclick="calculateDebt()" class="calculate-button">Calculate Potential Debt</button>
 
-        <!-- Output section where results will be displayed -->
         <div id="simulation-output"></div>
+
     </div>
 
     <script src="script.js"></script>
 </body>
 </html>
-
