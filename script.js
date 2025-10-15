@@ -11,10 +11,20 @@
         <h1>Robodebt: The Flawed Algorithm</h1>
         <p>This is a simplified simulation to demonstrate how Robodebt's "income averaging" created false debts. Adjust the values below to see how it worked.</p>
         
-        <div class="input-group">
-            <label for="annualIncome">Your Total Annual Income (from ATO)</label>
-            <input type="number" id="annualIncome" value="26000" step="1000">
-        </div>
+        <div class= "preselection" >
+                <!-- Option 1 -->
+                <button onclick="selectChoice('welfare')" class="condition">
+                    Welfare Recipient
+                </button>
+                <!-- Option 2 -->
+                <button onclick="selectChoice('creditor')" class="condition">
+                    Creditor to the State
+                </button>
+                <!-- Option 3 -->
+                <button onclick="selectChoice('partner')" class="condition">
+                    Partner of the above
+                </button>
+         </div>
 
         <div class="input-group">
             <label for="fortnightsWorked">Fortnights Worked This Year: <span id="fortnightsWorkedValue">13</span></label>
