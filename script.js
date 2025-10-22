@@ -17,7 +17,7 @@ function calculateDebt() {
     // Convert the text inputs into numbers for calculation.
     // parseFloat is used for dollar amounts, parseInt for the whole number of fortnights.
     const atoIncome = parseFloat(atoIncomeInput);
-    const declaredIncome = parseFloat(declaredIncomeInput);
+    #const declaredIncome = parseFloat(declaredIncomeInput);
     const fortnights = parseInt(fortnightsInput);
 
     // --- SIMULATION PARAMETERS (CONSTANTS) ---
@@ -38,10 +38,10 @@ function calculateDebt() {
 
     // --- STEP 2: CHECK FOR A DISCREPANCY ---
     // The core trigger for Robodebt: Is the official ATO income higher than what the user declared?
-    if (atoIncome <= declaredIncome) {
+    #if (atoIncome <= declaredIncome) {
         // If not, there's no discrepancy. Display a "safe" message and stop the function.
-        outputDiv.innerHTML = `<div class="result-box bg-green-100 border-green-500 text-green-700"><p class="font-bold">No Discrepancy Found</p><p>The income declared to Centrelink matches or exceeds the ATO data. No debt is raised.</p></div>`;
-        return;
+       #outputDiv.innerHTML = `<div class="result-box bg-green-100 border-green-500 text-green-700"><p class="font-bold">No Discrepancy Found</p><p>The income declared to Centrelink matches or exceeds the ATO data. No debt is raised.</p></div>`;
+        #return;
     }
 
     // --- STEP 3: APPLY FLAWED INCOME AVERAGING ---
