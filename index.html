@@ -3,36 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Robodebt Simulator</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Robodebt Simulation: The Flawed Algorithm</title>
+    <!-- 1. Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 2. Set up custom font and dark mode for Tailwind -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <!-- 3. Basic Page Styles -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .fortnight-card {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s ease-in-out;
+        }
+        .fortnight-card-debt {
+            border-color: #f87171; /* red-400 */
+            background-color: rgba(248, 113, 113, 0.05);
+        }
+        .btn {
+            @apply px-4 py-2 rounded-lg font-medium transition-colors;
+        }
+        .btn-active {
+            @apply bg-blue-600 text-white;
+        }
+        .btn-inactive {
+            @apply bg-gray-700 text-gray-300 hover:bg-gray-600;
+        }
+    </style>
 </head>
-<body>
-    <div class="container">
-        <h1>Robodebt: The Flawed Algorithm</h1>
-        <p>This is a simplified simulation to demonstrate how Robodebt's "income averaging" created false debts. Adjust the values below to see how it worked.</p>
-        
-        <div class="input-group">
-            <label for="annualIncome">Your Total Annual Income (from ATO)</label>
-            <input type="number" id="annualIncome" value="26000" step="1000">
+<body class="bg-gray-900 text-gray-100 p-4 md:p-8">
+
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">Robodebt Simulation</h1>
+            <h2 class="text-xl md:text-2xl font-light text-blue-300">The Flawed Averaging Algorithm</h2>
+            <p class="max-w-3xl mx-auto text-gray-400 mt-4 text-sm md:text-base">
+                This simulation shows how the Robodebt system created false debts. It compares a person's **Actual Declared Income** (sent to Centrelink each fortnight) with the system's **Flawed Calculation**, which simply averaged the total ATO annual income across all 26 fortnights.
+            </p>
+        </header>
+
+        <!-- Case Study Selector -->
+        <div class="flex justify-center space-x-4 mb-6">
+            <button id="case1-btn" class="btn btn-active">Case 1: The Casual Worker</button>
+            <button id="case2-btn" class="btn btn-inactive">Case 2: The Student</button>
         </div>
 
-        <div class="input-group">
-            <label for="fortnightsWorked">Fortnights Worked This Year: <span id="fortnightsWorkedValue">13</span></label>
-            <p class="note">You were unemployed and receiving benefits for the other <span id="fortnightsUnemployedValue">13</span> fortnights.</p>
-            <input type="range" id="fortnightsWorked" min="0" max="26" value="13" class="slider">
-        </div>
-
-        <div class="input-group">
-            <label for="centrelinkPayment">Fortnightly Centrelink Payment (when unemployed)</label>
-            <input type="number" id="centrelinkPayment" value="560" step="10">
-        </div>
-
-        <button id="calculateBtn">Simulate Robodebt Calculation</button>
-
-        <div id="results" class="results-hidden">
+        <!-- Summary Totals -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <div class="bg-gray-800 p-6 rounded-lg shadow-xl text-center">
+                <h3 class="text-sm font-medium text-gray-400 uppercase tracking-wider">Total ATO Annual Income</h3>
+                <p id="ato-income" class="text-3xl font-bold text-white mt-2">$0</p>
             </div>
+            <div class="bg-gray-800 p-6 rounded-lg shadow-xl text-center">
+                <h3 class="text-sm font-medium text-gray-400 uppercase tracking-wider">"Robodebt" Avg. Fortnightly Income</h3>
+                <p id="robodebt-average" class="text-3xl font-bold text-white mt-2">$0</p>
+            </div>
+            <div class="bg-red-800/50 border border-red-700 p-6 rounded-lg shadow-xl text-center">
+                <h3 class="text-sm font-medium text-red-200 uppercase tracking-wider">Total Phantom Debt Created</h3>
+                <p id="total-debt" class="text-3xl font-bold text-red-200 mt-2">$0</p>
+            </div>
+        </div>
+
+        <!-- Main Comparison Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            <!-- Column 1: The Reality -->
+            <div>
+                <h3 class="text-2xl font-semibold text-white mb-4 text-center">The Reality</h3>
+                <h4 class="text-lg font-light text-green-300 mb-4 text-center">(Actual Fortnightly Declared Income)</h4>
+                <div id="reality-column" class="space-y-3 max-h-[600px] overflow-y-auto pr-2">
+                    <!-- Fortnight cards will be injected here by JS -->
+                </div>
+            </div>
+
+            <!-- Column 2: The Robodebt Calculation -->
+            <div>
+                <h3 class="text-2xl font-semibold text-white mb-4 text-center">The Robodebt Calculation</h3>
+                <h4 class="text-lg font-light text-red-300 mb-4 text-center">(Flawed Averaged Income)</h4>
+                <div id="robodebt-column" class="space-y-3 max-h-[600px] overflow-y-auto pr-2">
+                    <!-- Fortnight cards will be injected here by JS -->
+                </div>
+            </div>
+        </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- 4. The Simulation JavaScript -->
+    <!-- Load the JavaScript logic from an external file -->
+    <script src="simulation.js" defer></script>
 </body>
 </html>
