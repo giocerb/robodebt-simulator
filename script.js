@@ -14,6 +14,13 @@ const createMonths = (specs) => {
 // Two example cases, now monthly
 const caseData = {
   case1: {
+    profile: {
+    name: "Laure",
+    age: 32,
+    city: "Sydney",
+    role: "Tech worker",
+    blurb: "Fired during a financial crisis. Tight labour conditions and a complex family situation made it impossible to find a new job."
+    },
     annualATOIncome: 20800,
     months: createMonths([
       { months: [0,1,2,3,4,5], declared: 3200, payment: 0 },        // 6 months working
@@ -21,6 +28,13 @@ const caseData = {
     ])
   },
   case2: {
+    profile: {
+    name: "Joe",
+    age: 22
+    city: "Canberra",
+    role: "Humanities student",
+    blurb: "Works in summer to finance his studies."
+  },
     annualATOIncome: 13000,
     months: createMonths([
       { months: [0,1,2,3,4], declared: 500, payment: 600 },         // Uni semester
