@@ -30,7 +30,7 @@ const caseData = {
   case2: {
     profile: {
     name: "Joe",
-    age: 22
+    age: 22,
     city: "Canberra",
     role: "Humanities student",
     blurb: "Works in summer to finance his studies."
