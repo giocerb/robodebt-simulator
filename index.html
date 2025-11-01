@@ -62,6 +62,69 @@
         </div>
         <div id="profile-card" class="bg-gray-800/80 border border-gray-700 rounded-xl p-5 mb-6 hidden">
         </div>
+        <!-- Add Profile trigger -->
+<div class="flex justify-center mb-4">
+  <button id="add-profile-btn" class="px-4 py-2 rounded-lg font-medium bg-emerald-600 text-white hover:bg-emerald-500">
+    + Add Custom Profile
+  </button>
+</div>
+
+<!-- Hidden create-profile panel -->
+<div id="new-profile-panel" class="hidden bg-gray-800 border border-gray-700 rounded-xl p-5 mb-6 max-w-3xl mx-auto">
+  <div class="flex items-center justify-between mb-3">
+    <h3 class="text-xl font-semibold text-white">Create a Profile</h3>
+    <button id="close-profile-btn" class="text-gray-300 hover:text-white">✕</button>
+  </div>
+
+  <!-- Basic details -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+    <label class="text-sm text-gray-300">
+      Name
+      <input id="np-name" class="mt-1 w-full bg-gray-900 border border-gray-700 rounded-md px-3 py-2 text-white" required>
+    </label>
+    <label class="text-sm text-gray-300">
+      Age (optional)
+      <input id="np-age" type="number" min="0" class="mt-1 w-full bg-gray-900 border border-gray-700 rounded-md px-3 py-2 text-white">
+    </label>
+    <label class="text-sm text-gray-300">
+      City
+      <input id="np-city" class="mt-1 w-full bg-gray-900 border border-gray-700 rounded-md px-3 py-2 text-white">
+    </label>
+    <label class="text-sm text-gray-300">
+      Role / Status
+      <input id="np-role" class="mt-1 w-full bg-gray-900 border border-gray-700 rounded-md px-3 py-2 text-white">
+    </label>
+  </div>
+
+  <label class="block text-sm text-gray-300 mt-3">
+    Short bio
+    <textarea id="np-blurb" rows="2" class="mt-1 w-full bg-gray-900 border border-gray-700 rounded-md px-3 py-2 text-white"></textarea>
+  </label>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3">
+    <label class="text-sm text-gray-300">
+      Annual ATO Income (AUD)
+      <input id="np-annual" type="number" min="0" step="100" class="mt-1 w-full bg-gray-900 border border-gray-700 rounded-md px-3 py-2 text-white" required>
+    </label>
+    <label class="text-sm text-gray-300">
+      Default Monthly Declared
+      <input id="np-default-declared" type="number" min="0" step="50" class="mt-1 w-full bg-gray-900 border border-gray-700 rounded-md px-3 py-2 text-white">
+    </label>
+    <label class="text-sm text-gray-300">
+      Default Monthly Payment
+      <input id="np-default-payment" type="number" min="0" step="50" class="mt-1 w-full bg-gray-900 border border-gray-700 rounded-md px-3 py-2 text-white">
+    </label>
+  </div>
+
+  <!-- Month grid will be generated here -->
+  <div id="month-grid" class="mt-4"></div>
+
+  <div class="mt-4 flex gap-3 justify-end">
+    <button id="np-cancel" class="px-4 py-2 rounded-lg font-medium bg-gray-700 text-gray-200 hover:bg-gray-600">Cancel</button>
+    <button id="np-save" class="px-4 py-2 rounded-lg font-medium bg-blue-600 text-white hover:bg-blue-500">Save Profile</button>
+  </div>
+</div>
+
         <!-- Summary Totals -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
             <div class="bg-gray-800 p-6 rounded-lg shadow-xl text-center">
