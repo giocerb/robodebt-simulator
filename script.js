@@ -168,3 +168,88 @@ case1Btn.addEventListener('click', () => loadCase('case1'));
 case2Btn.addEventListener('click', () => loadCase('case2'));
 
 document.addEventListener('DOMContentLoaded', () => loadCase('case1'));
+// Elements
+const addProfileBtn = document.getElementById('add-profile-btn');
+const panel = document.getElementById('new-profile-panel');
+const closeProfileBtn = document.getElementById('close-profile-btn');
+const npCancel = document.getElementById('np-cancel');
+const npSave = document.getElementById('np-save');
+
+function openPanel() {
+  panel.classList.remove('hidden');
+  // Initialize grid with current defaults
+  const d = Number(document.getElementById('np-default-declared').value || 0);
+  const p = Number(document.getElementById('np-default-payment').value || 0);
+  renderMonthGrid(d, p);
+}
+function closePanel() {
+  panel.classList.add('hidden');
+}
+
+addProfileBtn.addEventListener('click', openPanel);
+closeProfileBtn.addEventListener('click', closePanel);
+npCancel.addEventListener('click', closePanel);
+
+// Create a new case and wire it into UI
+function addCustomCase(key, obj) {
+  // 1) Save to in-memory data
+  caseData[key] = obj;
+
+  // 2) Create a new button next to your existing ones
+  const container = document.querySelector('.flex.justify-center.space-x-4') || document.getElementById('case-buttons');
+  const btn = document.createElement('button');
+  btn.textContent = `Case: ${obj.profile?.name || key}`;
+  btn.className = 'px-4 py-2 rounded-lg font-medium bg-gray-700 text-gray-300 hover:bg-gray-600';
+  btn.addEventListener('click', () => loadCase(key));
+  container.appendChild(btn);
+
+  // 3) Persist to localStorage
+  persistCustomCases();
+}
+
+function collectMonthValues() {
+  const dDefault = Number(document.getElementById('np-default-declared').value || 0);
+  const pDefault = Number(document.getElementById('np-default-payment').value || 0);
+  return Array.from({ length: 12 }, (_, i) => {
+    const d = document.getElementById(`declared-${i}`).value;
+    const p = document.getElementById(`payment-${i}`).value;
+    return {
+      declared: d === '' ? dDefault : Number(d),
+      payment:  p === '' ? pDefault : Number(p)
+    };
+  });
+}
+
+npSave.addEventListener('click', () => {
+  const name = document.getElementById('np-name').value.trim();
+  const age  = document.getElementById('np-age').value.trim();
+  const city = document.getElementById('np-city').value.trim();
+  const role = document.getElementById('np-role').value.trim();
+  const blurb= document.getElementById('np-blurb').value.trim();
+  const annual = Number(document.getElementById('np-annual').value);
+
+  if (!name || isNaN(annual)) {
+    alert('Please enter at least a Name and Annual ATO Income.');
+    return;
+  }
+
+  const months = collectMonthValues();
+  const key = slugify(name);
+
+  const newCase = {
+    profile: {
+      name,
+      age: age ? Number(age) : undefined,
+      city,
+      role,
+      blurb
+    },
+    annualATOIncome: annual,
+    months
+  };
+
+  addCustomCase(key, newCase);
+  closePanel();
+  loadCase(key); // show it immediately
+});
+
