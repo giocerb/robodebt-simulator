@@ -16,7 +16,7 @@ const caseData = {
   case1: {
     profile: {
     name: "Laure",
-    age: 32,
+    age: 33,
     city: "Sydney",
     role: "Tech worker",
     blurb: "Fired during a financial crisis. Tight labour conditions and a complex family situation made it impossible to find a new job."
@@ -30,10 +30,10 @@ const caseData = {
   case2: {
     profile: {
     name: "Joe",
-    age: 22,
+    age: 23,
     city: "Canberra",
     role: "Humanities student",
-    blurb: "Works in summer to finance his studies."
+    blurb: "Works in summer to finance his studies. The rest of the time, given his parents' income, he is entitled to welfare benefits."
   },
     annualATOIncome: 13000,
     months: createMonths([
