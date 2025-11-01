@@ -59,6 +59,42 @@ const case2Btn = document.getElementById('case2-btn');
 // --- HELPERS ---
 const formatCurrency = (num) =>
   num.toLocaleString('en-AU', { style: 'currency', currency: 'AUD' });
+// --- HELPERS ---
+const formatCurrency = (num) =>
+  num.toLocaleString('en-AU', { style: 'currency', currency: 'AUD' });
+
+
+// --- Custom profiles helpers (ADD HERE) ---
+const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]; // keep if not already defined
+
+function renderMonthGrid(defaultDeclared = 0, defaultPayment = 0) {
+  const grid = document.getElementById('month-grid');
+  grid.innerHTML = `
+    <div class="text-sm text-gray-400 mb-2">Override any month below (leave blank to use defaults).</div>
+    <div class="grid grid-cols-1 gap-2">
+      ${MONTHS.map((m, i) => `
+        <div class="grid grid-cols-12 items-center gap-2 bg-gray-900 border border-gray-700 rounded-md p-2">
+          <div class="col-span-3 text-gray-200 font-medium">${m}</div>
+          <label class="col-span-4 text-xs text-gray-300">
+            Declared (AUD)
+            <input id="declared-${i}" type="number" min="0" step="50"
+                   placeholder="${defaultDeclared}"
+                   class="mt-1 w-full bg-gray-950 border border-gray-700 rounded-md px-2 py-1 text-white">
+          </label>
+          <label class="col-span-4 text-xs text-gray-300">
+            Payment (AUD)
+            <input id="payment-${i}" type="number" min="0" step="50"
+                   placeholder="${defaultPayment}"
+                   class="mt-1 w-full bg-gray-950 border border-gray-700 rounded-md px-2 py-1 text-white">
+          </label>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
 
 // --- MAIN ---
 function loadCase(caseName) {
