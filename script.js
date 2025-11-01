@@ -63,6 +63,30 @@ const formatCurrency = (num) =>
 // --- MAIN ---
 function loadCase(caseName) {
   const data = caseData[caseName];
+  const profileEl = document.getElementById('profile-card');
+if (!profileEl) {
+  console.warn('No #profile-card found in DOM');
+} else if (data.profile) {
+  const { name, age, city, role, blurb } = data.profile;
+  const subtitle = [role, age ? `${age} y/o` : null, city].filter(Boolean).join(" • ");
+
+  profileEl.innerHTML = `
+    <div class="flex items-start gap-4">
+      <div class="flex h-12 w-12 items-center justify-center rounded-full bg-blue-600/20 border border-blue-600/30 text-blue-200 font-bold">
+        ${name.slice(0,1).toUpperCase()}
+      </div>
+      <div class="flex-1">
+        <p class="text-white font-semibold text-lg">${name}</p>
+        <p class="text-gray-300 text-sm">${subtitle}</p>
+        <p class="text-gray-400 text-sm mt-2 leading-relaxed">${blurb}</p>
+      </div>
+    </div>
+  `;
+  profileEl.classList.remove('hidden');
+} else {
+  profileEl.classList.add('hidden');
+}
+
   if (!data) return;
 
   // Clear
