@@ -59,12 +59,7 @@ const case2Btn = document.getElementById('case2-btn');
 // --- HELPERS ---
 const formatCurrency = (num) =>
   num.toLocaleString('en-AU', { style: 'currency', currency: 'AUD' });
-// --- HELPERS ---
-const formatCurrency = (num) =>
-  num.toLocaleString('en-AU', { style: 'currency', currency: 'AUD' });
 
-
-// --- Custom profiles helpers (ADD HERE) ---
 const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
 const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]; // keep if not already defined
