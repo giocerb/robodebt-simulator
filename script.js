@@ -1,6 +1,4 @@
 // --- DATA ---
-// --- DATA (monthly version) ---
-const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
 // Helper: fill 12 months with declared/payment values
 const createMonths = (specs) => {
